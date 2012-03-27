@@ -295,9 +295,9 @@ static const command_rec wurfl_cmds[] =
                  "On or off to enable the whole WURFL module"),
     AP_INIT_TAKE1("WurflDBFile", cmd_wurfldb, NULL, RSRC_CONF,
                  "the filename of the WURFL-DB xml file"),
-    AP_INIT_TAKE1("WurflMobilteEnv", cmd_wurflmobileenv, NULL, RSRC_CONF,
+    AP_INIT_TAKE1("WurflMobileEnv", cmd_wurflmobileenv, NULL, RSRC_CONF,
     			"ENV to set for mobile user agents"),
-    AP_INIT_TAKE1("WurflMobilteEnv", cmd_wurfltabletenv, NULL, RSRC_CONF,
+    AP_INIT_TAKE1("WurflTabletEnv", cmd_wurfltabletenv, NULL, RSRC_CONF,
     		   	 "ENV to set for tablet user agents"),
 
     { NULL }
