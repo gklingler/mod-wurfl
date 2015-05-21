@@ -271,16 +271,16 @@ static int wurfl_match_headers(request_rec *r)
     }
     user_agent = apr_table_get(r->headers_in, "User-Agent");
 	// ap_log_error(APLOG_MARK, APLOG_DEBUG, 0, r->server , "User-Agent is %s", user_agent);
-
-    device_info = apr_hash_get(sconf->device_hash, user_agent, APR_HASH_KEY_STRING);
-    if ( device_info != NULL) {
-    	ap_log_error(APLOG_MARK, APLOG_DEBUG, 0, r->server , "Found hash entry for %s MOBILE: %d TABLET: %d", user_agent, device_info->is_mobile, device_info->is_tablet);
-    	apr_table_setn(r->subprocess_env, sconf->mobile_env, "true");
-
-    	if ( device_info->is_tablet ) {
-    		apr_table_setn(r->subprocess_env, sconf->mobile_env, "true");
-    	}
-
+    if (user_agent!=NULL) {
+        device_info = apr_hash_get(sconf->device_hash, user_agent, APR_HASH_KEY_STRING);
+        if ( device_info != NULL) {
+            ap_log_error(APLOG_MARK, APLOG_DEBUG, 0, r->server , "Found hash entry for %s MOBILE: %d TABLET: %d", user_agent, device_info->is_mobile, device_info->is_tablet);
+            apr_table_setn(r->subprocess_env, sconf->mobile_env, "true");
+  
+            if ( device_info->is_tablet ) {
+                apr_table_setn(r->subprocess_env, sconf->mobile_env, "true");
+            }
+        }
     } else {
     	// ap_log_error(APLOG_MARK, APLOG_DEBUG, 0, r->server , "No entry found for UA: %s", user_agent);
     }
